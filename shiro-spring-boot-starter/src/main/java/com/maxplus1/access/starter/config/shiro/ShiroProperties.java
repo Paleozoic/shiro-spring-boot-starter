@@ -4,6 +4,7 @@ import com.maxplus1.access.starter.config.shiro.rbac.User;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+import javax.annotation.PostConstruct;
 import java.util.LinkedHashMap;
 
 @Data
@@ -11,6 +12,7 @@ import java.util.LinkedHashMap;
 public class ShiroProperties {
     private String tokenKey;
     private String loginUrl;
+    private String filterChain;
     private LinkedHashMap<String, String> filterChainDefinitionMap;
 
     /**
@@ -30,4 +32,18 @@ public class ShiroProperties {
     private Boolean testMode = false;
     private User mockUser;
 
+
+    @PostConstruct
+    public void buildFilterChainDefinitionMap() {
+        String filterChain = this.getFilterChain();
+        if(filterChain!=null && filterChain.length()>0){
+            LinkedHashMap<String, String> map =new LinkedHashMap<>();
+            String[] filterChainArr = filterChain.split("\n");
+            for (String s : filterChainArr) {
+                String[] split = s.split("=");
+                map.put(split[0],split[1]);
+            }
+            this.setFilterChainDefinitionMap(map);
+        }
+    }
 }

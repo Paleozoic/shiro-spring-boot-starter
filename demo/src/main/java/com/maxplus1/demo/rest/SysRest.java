@@ -1,6 +1,7 @@
 package com.maxplus1.demo.rest;
 
 import com.maxplus1.access.starter.config.shiro.BaseController;
+import com.maxplus1.access.starter.config.shiro.interceptor.shiro.Perms;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -40,9 +41,16 @@ public class SysRest extends BaseController{
     }
 
     @GetMapping("testDeny")
-    @RequiresPermissions("MENU_CODE_UN")
+    @Perms("MENU_CODE_UN")
     public String deny( )  {
         return "[ERROR===>>>]RequiresPermissions is not valid";
+    }
+
+    @GetMapping("testAuthc")
+    public Map authc( )  {
+        Map map = new HashMap();
+        map.put("已登录。当前登录用户ID",userId());
+        return map;
     }
 
 

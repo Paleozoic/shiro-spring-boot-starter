@@ -26,8 +26,6 @@ public class LoginRealm extends AuthorizingRealm {
     private IRoleService roleService;
     @Resource
     private IMenuService menuService;
-    @Autowired
-    private ShiroProperties shiroProperties;
 
     /**
      * 用户权限验证，这一步获取权限信息
@@ -35,12 +33,7 @@ public class LoginRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-        if(shiroProperties.getTestMode()){
-            SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-            info.addRole("*");
-            info.addStringPermission("*");
-            return info;
-        }
+
         String userId =  (String) principals.getPrimaryPrincipal();
         if( userId != null ){
             // 查询用户授权信息

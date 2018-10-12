@@ -1,6 +1,8 @@
 package com.maxplus1.access.starter.config.shiro;
 
-import com.maxplus1.access.starter.config.shiro.filter.UserFormAuthenticationFilter;
+import com.maxplus1.access.starter.config.shiro.filter.AuthcFilter;
+import com.maxplus1.access.starter.config.shiro.filter.PermsFilter;
+import com.maxplus1.access.starter.config.shiro.interceptor.shiro.ShiroAdvisor;
 import com.maxplus1.access.starter.config.shiro.realm.LoginRealm;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
@@ -76,7 +78,8 @@ public class ShiroAutoConfiguration {
 
         //设置filters
         Map<String,Filter> filterMap = new HashMap<>();
-        filterMap.put("userFormAuthenticationFilter",new UserFormAuthenticationFilter());
+        filterMap.put("authc",new AuthcFilter());
+        filterMap.put("perms",new PermsFilter());
         shiroFilterFactoryBean.setFilters(filterMap);
 
         return shiroFilterFactoryBean;
@@ -109,7 +112,8 @@ public class ShiroAutoConfiguration {
                     matchIfMissing = true
             )
     public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(@Autowired DefaultWebSecurityManager securityManager) {
-        AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
+//        AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
+        AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new ShiroAdvisor();
         authorizationAttributeSourceAdvisor.setSecurityManager(securityManager);
         return authorizationAttributeSourceAdvisor;
     }

@@ -6,9 +6,10 @@ import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Slf4j
-public class UserFormAuthenticationFilter extends FormAuthenticationFilter {
+public class AuthcFilter extends FormAuthenticationFilter {
 
 
     @Override
@@ -40,27 +41,19 @@ public class UserFormAuthenticationFilter extends FormAuthenticationFilter {
                 log.trace("[TRACE===>>>]Attempting to access a path which requires authentication.  Forwarding to the " +
                         "Authentication url [" + getLoginUrl() + "]");
             }
-            if(isAjax(request)){
-                /**
-                 * ajax请求，并且登录无效，报错
-                 */
-                response.getWriter().write(JacksonUtils.obj2Json(baseData));
-            }else{
-                /**
-                 * 非ajax请求，跳转到登录页
-                 */
-                this.saveRequestAndRedirectToLogin(request, response);
-            }
+            ((HttpServletResponse) response).setStatus(401);
+            StringBuffer sb = new StringBuffer();
+            sb.append(" { ");
+            sb.append("     \"code\":401, ");
+            sb.append("     \"success\":false, ");
+            sb.append("     \"data\":\"[ERROR===>>>]Please login first!\" ");
+            sb.append(" } ");
+            response.getWriter().write(sb.toString());
+
             return false;
         }
     }
 
-    private static boolean isAjax(ServletRequest request){
-        String header = ((HttpServletRequest) request).getHeader("X-Requested-With");
-        if("XMLHttpRequest".equalsIgnoreCase(header)){
-            return Boolean.TRUE;
-        }
-        return Boolean.FALSE;
-    }
+
 
 }

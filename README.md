@@ -1,3 +1,8 @@
+# 写在前面
+- 此starter封装并不只是为了使用完整的Shiro功能，目的是为大家提供一种封装思路，如果实际应用在业务场景，还需要具体情况具体分析
+- 当然你也可以遵循目前的设计规范，如果是而又有功能没有满足，不妨提个issue……
+- 倘若你有自己的设计，fork过去尽情修改吧~
+
 # 登录鉴权方式
 -  使用传统的session方式
 
@@ -75,6 +80,14 @@ spring:
 
 ```
 
+# Filters与AuthorizingAnnotationMethodInterceptor
+- `@RequiresPermissions`注解的处理是通过AOP实现拦截器`PermissionAnnotationMethodInterceptor`来处理；
+- 而`perms`是通过filter来实现的：`PermissionsAuthorizationFilter`
+- 所以，如果需要对权限错误做统一处理，只能覆写filter和interceptor。
+- Filter与MethodInterceptor的区别，Filter是基于URL做的拦截，而MethodInterceptor是基于AOP直接对方法进行的拦截。对于REST URL，比如`/api/user/{id}`这样的url请求。
+- 需要自己实现Filter并对url进行解析匹配（具体参考spring mvc的url匹配规则，略复杂）；或者直接使用MethodInterceptor
+
+
 # demo测试
 - 启动demo or  demo-redis
 - 登录测试（返回SessionId）：127.0.0.1:9000/demo/api/sys/login?userName=yonghu0&password=PASS0
@@ -91,7 +104,7 @@ spring:
     - 下载源码自行修改
     - 提issue到github
     - 使用原生Shiro进行个性化的封装
-    
+- 使用`com.maxplus1.access.starter.config.shiro.interceptor.shiro.Perms`来替换`@RequirePermissions`    
     
     
 # TODO

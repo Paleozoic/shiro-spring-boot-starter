@@ -12,14 +12,14 @@ spring:
         shiro:
             tokenKey: uuusid
             loginUrl: /api/sys/login
-            filterChainDefinitionMap:
-                "/static/**": "anon"
-                "/api/sys/ssoLogin": "anon"
-                "/api/sys/login": "anon"
-                "/api/sys/testRedis": "anon"
-#                "/api/**": "perms"
-                "/**": "authc"
-                "/api/sys/logout": "logout"
+            filterChain: | # 注意所有perms的权限都需要通过@RequirePermissions来实现，切勿配置。并且yaml配置map的key含有/时，无法识别/。
+                /static/**=anon
+                /api/sys/ssoLogin=anon
+                /api/sys/login=anon
+                /api/sys/testRedis=anon
+                /api/**=authc
+                /**=authc
+                /api/sys/logout=logout
             globalSessionTimeout: 180000000 # 3,600,000 milliseconds = 1 hour
             sessionValidationInterval: 360000 # 会话有效校验扫描间隔
             redisCacheEnabled: false # 开启分布式session 需要引入Redis的相关配置，spring-data-redis
