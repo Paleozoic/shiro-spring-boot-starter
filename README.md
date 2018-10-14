@@ -4,7 +4,7 @@
 - 倘若你有自己的设计，fork过去尽情修改吧~
 
 # JWT和Session的区别
-- JWT：服务端无状态，所有状态存储在客户端的加密token里面。服务端只负责校验token的有效性。服务端无法强制下线。
+- JWT：服务端无状态。所有状态存储在客户端的加密token里面。服务端只负责校验token的有效性。服务端无法强制下线。
 - Session：服务端有状态。服务端只是存储一个sid，服务端存储sid对应的信息。多应用共享Session通常使用Redis之类的内存数据库存储。
 
 # 登录鉴权方式
@@ -100,11 +100,11 @@ spring:
     - 提issue到github
     - 使用原生Shiro进行个性化的封装
 - `com.maxplus1.access.starter.config.shiro.interceptor.shiro.Perms` (已废弃)  
-- 此包只适配了前后端分离的项目，没有对静态资源进行处理    
+- 此包只适配了前后端分离的项目，没有对静态资源进行处理。且Shiro的异常以json形式返回。    
     
 # TODO
 - Session的一级缓存，二级缓存  
 - 动态更新权限，刷新缓存
 - 同一账号多处登录问题
 - 账户踢出接口
-- Shiro其他配置：http://shiro.apache.org/spring-boot.html#configuration-properties    
+- [Shiro其他配置](http://shiro.apache.org/spring-boot.html#configuration-properties )   
