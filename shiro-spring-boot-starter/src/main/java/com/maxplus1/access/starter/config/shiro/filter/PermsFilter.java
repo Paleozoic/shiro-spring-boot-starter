@@ -1,5 +1,6 @@
 package com.maxplus1.access.starter.config.shiro.filter;
 
+import com.maxplus1.access.starter.config.shiro.utils.JsonUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
@@ -34,14 +35,7 @@ public class PermsFilter extends PermissionsAuthorizationFilter {
         }
 
         if(!isPermitted){
-            ((HttpServletResponse) response).setStatus(HttpServletResponse.SC_FORBIDDEN);
-            StringBuffer sb = new StringBuffer();
-            sb.append(" { ");
-            sb.append("     \"code\":403, ");
-            sb.append("     \"success\":false, ");
-            sb.append("     \"data\":\"[ERROR===>>>]No permission!\" ");
-            sb.append(" } ");
-            response.getWriter().write(sb.toString());
+            JsonUtils.authFail((HttpServletResponse) response);
         }
         return isPermitted;
     }

@@ -1,5 +1,6 @@
 package com.maxplus1.access.starter.config.shiro.filter;
 
+import com.maxplus1.access.starter.config.shiro.utils.JsonUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
 
@@ -41,15 +42,7 @@ public class AuthcFilter extends FormAuthenticationFilter {
                 log.trace("[TRACE===>>>]Attempting to access a path which requires authentication.  Forwarding to the " +
                         "Authentication url [" + getLoginUrl() + "]");
             }
-            ((HttpServletResponse) response).setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            StringBuffer sb = new StringBuffer();
-            sb.append(" { ");
-            sb.append("     \"code\":401, ");
-            sb.append("     \"success\":false, ");
-            sb.append("     \"data\":\"[ERROR===>>>]Please login first!\" ");
-            sb.append(" } ");
-            response.getWriter().write(sb.toString());
-
+            JsonUtils.loginFail((HttpServletResponse) response);
             return false;
         }
     }
