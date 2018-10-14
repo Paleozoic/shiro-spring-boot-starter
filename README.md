@@ -1,22 +1,17 @@
 # 写在前面
 - 此starter封装并不只是为了使用完整的Shiro功能，目的是为大家提供一种封装思路，如果实际应用在业务场景，还需要具体情况具体分析
-- 当然你也可以遵循目前的设计规范，如果是而又有功能没有满足，不妨提个issue……
+- 当然你也可以遵循目前的设计规范，如果有功能没有满足，不妨提个issue……
 - 倘若你有自己的设计，fork过去尽情修改吧~
+
+# JWT和Session的区别
+- JWT：服务端无状态，所有状态存储在客户端的加密token里面。服务端只负责校验token的有效性。服务端无法强制下线。
+- Session：服务端有状态。服务端只是存储一个sid，服务端存储sid对应的信息。多应用共享Session通常使用Redis之类的内存数据库存储。
 
 # 登录鉴权方式
 -  使用传统的session方式
 
-# JWT和Session的区别
-- JWT：服务端无状态，所有状态存储在客户端的加密token里面。服务端只负责校验token的有效性。服务端无法强制下线。
-- Session：服务端有状态。服务端只是存储一个sid，服务端存储sid对应的信息。多应用共享Session通常使用Redis异类的内存数据库存储。
-
-# 配置方式
-- 放在header或者cookie的sessionId。header的sid具有高优先级。
-
-
-
-# 注意
-- 此包只适配了前后端分离的项目，没有对静态资源进行处理
+# SessionId传递
+- sessionId放在header或者cookie进行传递。header的sid具有高优先级。
 
 
 # Spring Boot SPI 
@@ -35,10 +30,10 @@ org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration
 
 # Redis配置
 - Redis配置完全和spring-data-redis一致，且为默认的RedisTemplate
-- 由于Shiro的序列化方式默认是JDK序列化，如果非Shiro需要使用其他序列化方式，需要单独配置，参考demo。
+- 由于Shiro的序列化方式默认是JDK序列化，如果非Shiro需要使用其他序列化方式，需要单独配置，参考demo-redis。
 - 多Redis数据源配置：此时`spring.redis`的配置依然需要配置，其他数据源单独配置。
 
-# 配置
+# 配置文件示例
 ```yml
 spring:
     redis:
@@ -96,8 +91,8 @@ spring:
 - 测试不同的Redis序列化方式：127.0.0.1:9000/demo/api/sys/testRedis
 
 # HTTP状态码
--  未登录被拒绝：401 （未授权） 请求要求身份验证。 对于需要登录的网页，服务器可能返回此响应。
--  未授权被拒绝：403 （禁止） 服务器拒绝请求。 
+-  未登录被拒绝：401 
+-  未授权被拒绝：403 
 
 # 注意
 - 既然基于Shiro做了封装，那么可自定义的模块肯定减少，如果需要增加其他配置。可以：
@@ -105,7 +100,7 @@ spring:
     - 提issue到github
     - 使用原生Shiro进行个性化的封装
 - `com.maxplus1.access.starter.config.shiro.interceptor.shiro.Perms` (已废弃)  
-    
+- 此包只适配了前后端分离的项目，没有对静态资源进行处理    
     
 # TODO
 - Session的一级缓存，二级缓存  
