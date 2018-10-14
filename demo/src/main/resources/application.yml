@@ -12,7 +12,7 @@ spring:
         shiro:
             tokenKey: uuusid
             loginUrl: /api/sys/login
-            filterChain: | # 注意所有perms的权限都需要通过@RequirePermissions来实现，切勿配置。并且yaml配置map的key含有/时，无法识别/。
+            filterChain: | # 注意所有perms的权限都需要通过@RequirePermissions来实现，建议不要配置perms（动态URL问题）。PS:yaml配置map的key含有/时，无法识别/。
                 /static/**=anon
                 /api/sys/ssoLogin=anon
                 /api/sys/login=anon
