@@ -76,11 +76,9 @@ spring:
 ```
 
 # Filters与AuthorizingAnnotationMethodInterceptor
-- `@RequiresPermissions`注解的处理是通过AOP实现拦截器`PermissionAnnotationMethodInterceptor`来处理；
-- 而`perms`是通过filter来实现的：`PermissionsAuthorizationFilter`
-- 所以，如果需要对权限错误做统一处理，只能覆写filter和interceptor。
+- `@RequiresPermissions`注解的处理是通过AOP实现拦截器`PermissionAnnotationMethodInterceptor`来处理；而`perms`是通过filter来实现的：`PermissionsAuthorizationFilter`。
 - Filter与MethodInterceptor的区别，Filter是基于URL做的拦截，而MethodInterceptor是基于AOP直接对方法进行的拦截。对于REST URL，比如`/api/user/{id}`这样的url请求。
-- 需要自己实现Filter并对url进行解析匹配（具体参考spring mvc的url匹配规则，略复杂）；或者直接使用MethodInterceptor
+- Filter处理REST URL需要自己实现Filter并对url进行解析匹配（具体参考spring mvc的url匹配规则，略复杂）；或者直接使用MethodInterceptor。
 
 
 # demo测试
