@@ -112,8 +112,8 @@ public class ShiroAutoConfiguration {
                     matchIfMissing = true
             )
     public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(@Autowired DefaultWebSecurityManager securityManager) {
-//        AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
-        AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new ShiroAdvisor();
+        AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
+//        AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new ShiroAdvisor();
         authorizationAttributeSourceAdvisor.setSecurityManager(securityManager);
         return authorizationAttributeSourceAdvisor;
     }

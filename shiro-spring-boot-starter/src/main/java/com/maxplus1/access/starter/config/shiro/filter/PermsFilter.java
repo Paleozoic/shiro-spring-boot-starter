@@ -34,7 +34,7 @@ public class PermsFilter extends PermissionsAuthorizationFilter {
         }
 
         if(!isPermitted){
-            ((HttpServletResponse) response).setStatus(401);
+            ((HttpServletResponse) response).setStatus(HttpServletResponse.SC_FORBIDDEN);
             StringBuffer sb = new StringBuffer();
             sb.append(" { ");
             sb.append("     \"code\":403, ");

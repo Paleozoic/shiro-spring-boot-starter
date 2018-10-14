@@ -41,7 +41,7 @@ public class AuthcFilter extends FormAuthenticationFilter {
                 log.trace("[TRACE===>>>]Attempting to access a path which requires authentication.  Forwarding to the " +
                         "Authentication url [" + getLoginUrl() + "]");
             }
-            ((HttpServletResponse) response).setStatus(401);
+            ((HttpServletResponse) response).setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             StringBuffer sb = new StringBuffer();
             sb.append(" { ");
             sb.append("     \"code\":401, ");

@@ -14,6 +14,7 @@ import java.lang.annotation.Annotation;
  *
  * @since 0.9.0
  */
+@Deprecated
 public class PermAnnotationHandler extends AuthorizingAnnotationHandler {
 
     /**

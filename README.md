@@ -104,7 +104,7 @@ spring:
     - 下载源码自行修改
     - 提issue到github
     - 使用原生Shiro进行个性化的封装
-- 使用`com.maxplus1.access.starter.config.shiro.interceptor.shiro.Perms`来替换`@RequirePermissions`    
+- `com.maxplus1.access.starter.config.shiro.interceptor.shiro.Perms` (已废弃)  
     
     
 # TODO

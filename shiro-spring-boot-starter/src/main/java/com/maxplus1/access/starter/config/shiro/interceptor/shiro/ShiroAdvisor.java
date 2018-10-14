@@ -37,6 +37,7 @@ import java.lang.reflect.Method;
  * @since 0.1
  */
 @Slf4j
+@Deprecated
 public class ShiroAdvisor extends AuthorizationAttributeSourceAdvisor {
 
 

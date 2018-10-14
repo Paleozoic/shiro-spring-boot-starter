@@ -41,7 +41,7 @@ public class SysRest extends BaseController{
     }
 
     @GetMapping("testDeny")
-    @Perms("MENU_CODE_UN")
+    @RequiresPermissions("MENU_CODE_UN")
     public String deny( )  {
         return "[ERROR===>>>]RequiresPermissions is not valid";
     }
