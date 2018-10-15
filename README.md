@@ -99,6 +99,23 @@ spring:
     - 使用原生Shiro进行个性化的封装
 - `com.maxplus1.access.starter.config.shiro.interceptor.shiro.Perms` (已废弃)  
 - 此包只适配了前后端分离的项目，没有对静态资源进行处理。且Shiro的异常以json形式返回。    
+
+# deploy
+- 更改parent下的pom.xml的`deploy2maven.url.snapshots`和`deploy2maven.url.releases`为自己私库的url
+- 配置maven的settings.xml的server标签。如下：
+```xml
+<server>
+    <id>user-snapshot</id>
+    <username>your name</username>
+    <password>your pass</password>
+</server>
+<server>
+    <id>user-release</id>
+    <username>your name</username>
+    <password>your pass</password>
+</server>
+```
+- 执行maven的deploy命令
     
 # TODO
 - Session的一级缓存，二级缓存  
