@@ -1,7 +1,6 @@
 package com.maxplus1.access.starter.config.shiro.realm;
 
 
-import com.maxplus1.access.starter.config.shiro.ShiroProperties;
 import com.maxplus1.access.starter.config.shiro.rbac.Menu;
 import com.maxplus1.access.starter.config.shiro.rbac.Role;
 import com.maxplus1.access.starter.config.shiro.rbac.User;
@@ -13,7 +12,6 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.Resource;
 import java.util.List;
