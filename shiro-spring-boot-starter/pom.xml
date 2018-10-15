@@ -7,7 +7,7 @@
 
     <groupId>com.maxplus1</groupId>
     <artifactId>shiro-spring-boot-starter</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.0-SNAPSHOT</version>
 
     <properties>
         <java.version>1.8</java.version>
@@ -16,7 +16,7 @@
     <parent>
         <groupId>com.maxplus1</groupId>
         <artifactId>shiro-spring-boot-starter-parent</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
 
     <dependencies>
@@ -86,4 +86,16 @@
             </plugins>
         </pluginManagement>
     </build>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>user-snapshot</id>
+            <url>${deploy2maven.url.snapshots}</url>
+            <uniqueVersion>true</uniqueVersion>
+        </snapshotRepository>
+        <repository>
+            <id>user-release</id>
+            <url>${deploy2maven.url.snapshots}</url>
+        </repository>
+    </distributionManagement>
 </project>

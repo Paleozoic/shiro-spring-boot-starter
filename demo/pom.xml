@@ -20,7 +20,7 @@
         <dependency>
             <groupId>com.maxplus1</groupId>
             <artifactId>shiro-spring-boot-starter</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.0-SNAPSHOT</version>
             <!-- 如果不使用redis，需要移除，默认使用 -->
             <exclusions>
                 <exclusion>
