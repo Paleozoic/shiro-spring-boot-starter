@@ -1,5 +1,6 @@
 package com.maxplus1.access.starter.config.shiro;
 
+import com.maxplus1.access.starter.config.shiro.bean.App;
 import com.maxplus1.access.starter.config.shiro.rbac.User;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -10,6 +11,9 @@ import java.util.LinkedHashMap;
 @Data
 @ConfigurationProperties("spring.maxplus1.shiro")
 public class ShiroProperties {
+
+    private App app;
+
     private String tokenKey;
     private String loginUrl;
     private String filterChain;

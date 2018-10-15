@@ -33,6 +33,13 @@ org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration
 - 由于Shiro的序列化方式默认是JDK序列化，如果非Shiro需要使用其他序列化方式，需要单独配置，参考demo-redis。
 - 多Redis数据源配置：此时`spring.redis`的配置依然需要配置，其他数据源单独配置。
 
+# appId
+- appId用于多系统交互时使用，如果系统不涉及此方面，可以忽略。
+- appId可以通过配置文件配置，表示当前系统的app表示
+- 也可以遵循协议，appId通过cookie或者header传递。header具有较高优先级（设计和Session一样）
+- 为什么不放在Session？
+    - 因为多系统可能公用一个Session，此时无法判断当前Session属于哪个系统。
+
 # 配置文件示例
 ```yml
 spring:
@@ -50,6 +57,9 @@ spring:
       timeout: 100s
     maxplus1:
       shiro:
+          app:
+            id: uuuappkey
+            key: MaxPlus1     
           tokenKey: uuusid
           loginUrl: /api/sys/login
           filterChain: | # 注意所有perms的权限都需要通过@RequirePermissions来实现，建议不要配置perms（动态URL问题）。PS:yaml配置map的key含有/时，无法识别/。

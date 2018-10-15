@@ -42,7 +42,7 @@ public class ShiroAutoConfiguration {
         defaultWebSessionManager.setGlobalSessionTimeout(shiroProperties.getGlobalSessionTimeout());
         defaultWebSessionManager.setSessionValidationInterval(shiroProperties.getSessionValidationInterval());
         defaultWebSessionManager.setSessionValidationSchedulerEnabled(true);
-
+        defaultWebSessionManager.setSessionIdUrlRewritingEnabled(true);
 //        defaultWebSessionManager.setCacheManager(); //默认 MapCache  SimpleSession  MemoryConstrainedCacheManager
 
         return defaultWebSessionManager;

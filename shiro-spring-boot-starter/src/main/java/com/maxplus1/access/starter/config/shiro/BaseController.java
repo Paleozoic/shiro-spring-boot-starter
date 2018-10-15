@@ -3,6 +3,7 @@ package com.maxplus1.access.starter.config.shiro;
 import com.maxplus1.access.starter.config.shiro.interceptor.WebResource;
 import com.maxplus1.access.starter.config.shiro.rbac.AccUtils;
 import com.maxplus1.access.starter.config.shiro.rbac.User;
+import com.maxplus1.access.starter.config.shiro.utils.CookieUtils;
 import com.maxplus1.access.starter.config.shiro.utils.JsonUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.AuthenticationException;
@@ -64,6 +65,29 @@ public abstract class BaseController {
      */
     public String uri(){
         return req().getRequestURI();
+    }
+
+    /**
+     * 获取当前系统标识符
+     * @return
+     */
+    public String appId(){
+        return shiroProperties.getApp().getId();
+    }
+
+
+    /**
+     * 通过协议传参获取系统标识符
+     * @return
+     */
+    public String appThirdId(){
+        String key = shiroProperties.getApp().getKey();
+        HttpServletRequest req = req();
+        String appId = req.getHeader(key);
+        if (appId==null || appId.length()<=0) {
+            appId = CookieUtils.getCookie(req,key);
+        }
+        return appId;
     }
 
     /**
