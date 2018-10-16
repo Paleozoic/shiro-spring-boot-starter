@@ -36,4 +36,8 @@ public class JsonUtils {
     public static void authFail(HttpServletResponse response){
         JsonUtils.writeJson(AUTH_FAIL,"No permission!",response);
     }
+
+    public static void appFail(String appId,HttpServletResponse response){
+        JsonUtils.writeJson(AUTH_FAIL,"[ERROR===>>>]No permission to access the App [" + appId + "]",response);
+    }
 }

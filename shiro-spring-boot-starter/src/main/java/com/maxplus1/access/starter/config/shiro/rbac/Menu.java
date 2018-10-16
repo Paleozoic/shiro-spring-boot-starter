@@ -13,11 +13,11 @@ public class Menu<T> implements Serializable{
     private String upperMenuId;
     private String upperMenuName;
     private String menuName;
-    private String type;
+    private String menuType;
     private Integer orderNo;
     private String url;
     private Integer status;
-    private String appName;
+    private String appId;
     /**
      * 扩展其他参数的模板
      */

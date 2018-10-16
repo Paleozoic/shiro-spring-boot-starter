@@ -13,6 +13,7 @@ public class Role<T> implements Serializable {
     private String roleGroupId;
     private String roleGroupName;
     private Integer status;
+    private String appId;
     /**
      * 扩展其他参数的模板
      */

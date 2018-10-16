@@ -87,7 +87,15 @@ public abstract class BaseController {
         if (appId==null || appId.length()<=0) {
             appId = CookieUtils.getCookie(req,key);
         }
-        return appId;
+        if (appId==null || appId.length()<=0) {
+            return appId ;
+        }
+        if(user().getAppIdList().contains(appId)){
+            return appId;
+        }else{
+            JsonUtils.appFail(appId,res());
+            throw new RuntimeException("[ERROR===>>>]No permission to access the App [" + appId + "]");
+        }
     }
 
     /**
