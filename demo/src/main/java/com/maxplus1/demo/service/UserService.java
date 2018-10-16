@@ -1,14 +1,14 @@
 package com.maxplus1.demo.service;
 
-import com.maxplus1.access.starter.config.shiro.rbac.User;
-import com.maxplus1.access.starter.config.shiro.rbac.service.IUserService;
+import com.maxplus1.access.starter.config.shiro.rbac.ShiroUser;
+import com.maxplus1.access.starter.config.shiro.rbac.service.IShiroUserService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService implements IUserService{
+public class UserService implements IShiroUserService {
 
-    public User getUserByNameWithPassword(String userName) {
-        User u = new User();
+    public ShiroUser getUserByNameWithPassword(String userName) {
+        ShiroUser u = new ShiroUser();
         u.setUserId("USER0");
         u.setUserName("用户0");
         u.setPassword("PASS0");

@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
-public class Menu<T> implements Serializable{
+public class ShiroMenu<T> implements Serializable{
     private String menuId;
     private String menuCode;
     private String upperMenuId;

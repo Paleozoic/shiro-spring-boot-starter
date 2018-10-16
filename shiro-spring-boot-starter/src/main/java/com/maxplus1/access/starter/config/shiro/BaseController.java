@@ -2,7 +2,7 @@ package com.maxplus1.access.starter.config.shiro;
 
 import com.maxplus1.access.starter.config.shiro.interceptor.WebResource;
 import com.maxplus1.access.starter.config.shiro.rbac.AccUtils;
-import com.maxplus1.access.starter.config.shiro.rbac.User;
+import com.maxplus1.access.starter.config.shiro.rbac.ShiroUser;
 import com.maxplus1.access.starter.config.shiro.utils.CookieUtils;
 import com.maxplus1.access.starter.config.shiro.utils.JsonUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -116,7 +116,7 @@ public abstract class BaseController {
         return user().getDeptId();
     }
 
-    public User user(){
+    public ShiroUser user(){
         if(shiroProperties.getTestMode()){
             return shiroProperties.getMockUser();
         }

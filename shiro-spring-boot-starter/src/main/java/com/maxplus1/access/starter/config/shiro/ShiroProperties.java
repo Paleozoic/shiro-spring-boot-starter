@@ -1,7 +1,7 @@
 package com.maxplus1.access.starter.config.shiro;
 
 import com.maxplus1.access.starter.config.shiro.bean.App;
-import com.maxplus1.access.starter.config.shiro.rbac.User;
+import com.maxplus1.access.starter.config.shiro.rbac.ShiroUser;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -34,7 +34,7 @@ public class ShiroProperties {
      * 测试模式，所有URL的权限都是anon（允许匿名访问）
      */
     private Boolean testMode = false;
-    private User mockUser;
+    private ShiroUser mockUser;
 
 
     @PostConstruct

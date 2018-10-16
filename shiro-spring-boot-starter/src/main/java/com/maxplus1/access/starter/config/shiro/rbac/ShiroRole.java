@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
-public class Role<T> implements Serializable {
+public class ShiroRole<T> implements Serializable {
     private String roleId;
     private String roleName;
     private String roleGroupId;

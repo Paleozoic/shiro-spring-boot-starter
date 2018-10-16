@@ -1,20 +1,20 @@
 package com.maxplus1.demo.service;
 
-import com.maxplus1.access.starter.config.shiro.rbac.Role;
-import com.maxplus1.access.starter.config.shiro.rbac.service.IRoleService;
+import com.maxplus1.access.starter.config.shiro.rbac.ShiroRole;
+import com.maxplus1.access.starter.config.shiro.rbac.service.IShiroRoleService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class RoleService implements IRoleService {
+public class RoleService implements IShiroRoleService {
 
 
-    public List<Role> getUserRoleList(String userId) {
-        List<Role> roleList = new ArrayList<Role>();
+    public List<ShiroRole> getUserRoleList(String userId) {
+        List<ShiroRole> roleList = new ArrayList<ShiroRole>();
         for (int i = 0; i < 2; i++) {
-            Role role = new Role();
+            ShiroRole role = new ShiroRole();
             role.setRoleId("ROLE"+i);
             roleList.add(role);
         }

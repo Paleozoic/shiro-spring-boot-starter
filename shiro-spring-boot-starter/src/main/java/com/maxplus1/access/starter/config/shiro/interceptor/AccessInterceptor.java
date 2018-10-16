@@ -1,7 +1,7 @@
 package com.maxplus1.access.starter.config.shiro.interceptor;
 
 
-import com.maxplus1.access.starter.config.shiro.rbac.service.IMenuService;
+import com.maxplus1.access.starter.config.shiro.rbac.service.IShiroMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 public class AccessInterceptor implements HandlerInterceptor{
 
     @Autowired
-    private IMenuService menuService;
+    private IShiroMenuService menuService;
 
 
 
@@ -31,9 +31,9 @@ public class AccessInterceptor implements HandlerInterceptor{
             throws Exception {
         //TODO 算了 使用RequiresPermissions实现算了 因为涉及动态url  这里不好处理
 //        String requestURI = req.getRequestURI();
-//        List<Menu> userMenus =menuService.getUserMenuList(AccUtils.getUserId());
+//        List<ShiroMenu> userMenus =menuService.getUserMenuList(AccUtils.getUserId());
 //        //将requestURI转化为menuCode
-//        for (Menu menu : userMenus) {
+//        for (ShiroMenu menu : userMenus) {
 //            String url = menu.getUrl();
 //            if(url!=null && url.contains())
 //

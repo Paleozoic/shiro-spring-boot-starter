@@ -8,7 +8,7 @@ import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
-public class User<T> implements Serializable {
+public class ShiroUser<T> implements Serializable {
     private String userId;
     private String userName;
     private String deptId;

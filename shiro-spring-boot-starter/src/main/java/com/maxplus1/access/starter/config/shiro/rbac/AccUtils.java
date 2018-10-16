@@ -6,7 +6,7 @@ import com.maxplus1.access.starter.config.shiro.interceptor.WebResource;
 public class AccUtils {
 
     private final static String USER_ID_SESSION_KEY = "session:com.maxplus1.access.config.shiro.UserId";
-    private final static String USER_SESSION_KEY = "session:com.maxplus1.access.config.shiro.User";
+    private final static String USER_SESSION_KEY = "session:com.maxplus1.access.config.shiro.ShiroUser";
 
     /**
      * 从会话中取出userId
@@ -29,13 +29,13 @@ public class AccUtils {
         WebResource.session().setAttribute(USER_ID_SESSION_KEY, userId);
     }
 
-    public static void setUser(User user){
+    public static void setUser(ShiroUser user){
         WebResource.session().setAttribute(USER_SESSION_KEY, user);
     }
-    public static User getUser(){
+    public static ShiroUser getUser(){
         Object obj = WebResource.session().getAttribute(USER_SESSION_KEY);
-        if (obj != null && obj.getClass() == User.class) {
-            return (User)obj;
+        if (obj != null && obj.getClass() == ShiroUser.class) {
+            return (ShiroUser)obj;
         } else {
             return null;
         }
