@@ -33,7 +33,7 @@ public class LoginRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-        SimplePrincipalMap simplePrincipalMap = (SimplePrincipalMap) principals;
+        SimplePrincipalMap simplePrincipalMap = (SimplePrincipalMap) principals.getPrimaryPrincipal();
         String userId =  (String) simplePrincipalMap.get("userId");
         if( userId != null ){
             // 查询用户授权信息

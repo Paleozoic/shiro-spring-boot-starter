@@ -42,7 +42,7 @@ public class LoginInterceptor implements HandlerInterceptor{
     public void afterCompletion(HttpServletRequest req, HttpServletResponse res, Object handler, Exception ex)
             throws Exception {
         if(SecurityUtils.getSubject().isAuthenticated()){
-            SimplePrincipalMap simplePrincipalMap = (SimplePrincipalMap) SecurityUtils.getSubject().getPrincipals();
+            SimplePrincipalMap simplePrincipalMap = (SimplePrincipalMap) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
             String userId = (String) simplePrincipalMap.get("userId");
             AccUtils.setUserId(userId);
             ShiroUser userById = userService.getUserByNameWithPassword(userId);
