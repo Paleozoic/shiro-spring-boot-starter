@@ -12,6 +12,7 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.subject.SimplePrincipalMap;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.Resource;
@@ -32,8 +33,8 @@ public class LoginRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-
-        String userId =  (String) principals.getPrimaryPrincipal();
+        SimplePrincipalMap simplePrincipalMap = (SimplePrincipalMap) principals;
+        String userId =  (String) simplePrincipalMap.get("userId");
         if( userId != null ){
             // 查询用户授权信息
             List<ShiroRole> userRoles=roleService.getUserRoleList(userId);
@@ -69,8 +70,10 @@ public class LoginRealm extends AuthorizingRealm {
 
             //这一步传入数据库查找的用户密码，返回SimpleAuthenticationInfo，Shiro会通过SimpleAuthenticationInfo的password和UsernamePasswordToken的password进行匹配
             String pwd = user.getPassword();
-
-            return new SimpleAuthenticationInfo(user.getUserId(),pwd,this.getName());
+            SimplePrincipalMap simplePrincipalMap = new SimplePrincipalMap();
+            simplePrincipalMap.put("userId",user.getUserId());
+            simplePrincipalMap.put("userName",user.getUserName());
+            return new SimpleAuthenticationInfo(simplePrincipalMap,pwd,this.getName());
         }else{
             throw new UnknownAccountException("[ERROR===>>>]用户不存在！");
         }
