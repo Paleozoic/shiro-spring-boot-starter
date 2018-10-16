@@ -5,7 +5,7 @@
 
 # JWT和Session的区别
 - JWT：服务端无状态。所有状态存储在客户端的加密token里面。服务端只负责校验token的有效性。服务端无法强制下线。
-- Session：服务端有状态。服务端只是存储一个sid，服务端存储sid对应的信息。多应用共享Session通常使用Redis之类的内存数据库存储。
+- Session：服务端有状态。客户端只是存储一个sid，服务端存储sid对应的信息。多应用共享Session通常使用Redis之类的内存数据库存储。
 
 # 登录鉴权方式
 -  使用传统的session方式
@@ -35,7 +35,7 @@ org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration
 
 # appId
 - appId用于多系统交互时使用，如果系统不涉及此方面，可以忽略。
-- appId可以通过配置文件配置，表示当前系统的app表示
+- appId可以通过配置文件配置，表示当前系统的app标识
 - 也可以遵循协议，appId通过cookie或者header传递。header具有较高优先级（设计和Session一样）
 - 为什么不放在Session？
     - 因为多系统可能公用一个Session，此时无法判断当前Session属于哪个系统。
