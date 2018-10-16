@@ -7,6 +7,8 @@ import com.maxplus1.access.starter.config.shiro.rbac.ShiroUser;
 import com.maxplus1.access.starter.config.shiro.rbac.service.IShiroMenuService;
 import com.maxplus1.access.starter.config.shiro.rbac.service.IShiroRoleService;
 import com.maxplus1.access.starter.config.shiro.rbac.service.IShiroUserService;
+import com.maxplus1.access.starter.config.shiro.utils.ShiroUtils;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -33,8 +35,7 @@ public class LoginRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-        SimplePrincipalMap simplePrincipalMap = (SimplePrincipalMap) principals.getPrimaryPrincipal();
-        String userId =  (String) simplePrincipalMap.get("userId");
+        String userId = ShiroUtils.getUserId(SecurityUtils.getSubject().getPrincipals());
         if( userId != null ){
             // 查询用户授权信息
             List<ShiroRole> userRoles=roleService.getUserRoleList(userId);
@@ -71,8 +72,8 @@ public class LoginRealm extends AuthorizingRealm {
             //这一步传入数据库查找的用户密码，返回SimpleAuthenticationInfo，Shiro会通过SimpleAuthenticationInfo的password和UsernamePasswordToken的password进行匹配
             String pwd = user.getPassword();
             SimplePrincipalMap simplePrincipalMap = new SimplePrincipalMap();
-            simplePrincipalMap.put("userId",user.getUserId());
-            simplePrincipalMap.put("userName",user.getUserName());
+            simplePrincipalMap.put(ShiroUtils.USER_ID,user.getUserId());
+            simplePrincipalMap.put(ShiroUtils.USER_NAME,user.getUserName());
             return new SimpleAuthenticationInfo(simplePrincipalMap,pwd,this.getName());
         }else{
             throw new UnknownAccountException("[ERROR===>>>]用户不存在！");
