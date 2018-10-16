@@ -12,9 +12,11 @@ public class CookieUtils {
 
     public static String getCookie(HttpServletRequest req, String name) {
         javax.servlet.http.Cookie[] cookies = req.getCookies();
-        for (javax.servlet.http.Cookie cookie : cookies) {
-            if(name.equals(cookie.getName())){
-                return cookie.getValue();
+        if(cookies!=null && cookies.length>0){
+            for (javax.servlet.http.Cookie cookie : cookies) {
+                if(name.equals(cookie.getName())){
+                    return cookie.getValue();
+                }
             }
         }
         return null;
