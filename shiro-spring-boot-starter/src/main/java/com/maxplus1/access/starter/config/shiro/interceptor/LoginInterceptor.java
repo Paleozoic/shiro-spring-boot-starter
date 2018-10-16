@@ -5,6 +5,7 @@ import com.maxplus1.access.starter.config.shiro.rbac.AccUtils;
 import com.maxplus1.access.starter.config.shiro.rbac.ShiroUser;
 import com.maxplus1.access.starter.config.shiro.rbac.service.IShiroUserService;
 import org.apache.shiro.SecurityUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -20,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class LoginInterceptor implements HandlerInterceptor{
 
-    @Resource
+    @Autowired
     private IShiroUserService userService;
 
 

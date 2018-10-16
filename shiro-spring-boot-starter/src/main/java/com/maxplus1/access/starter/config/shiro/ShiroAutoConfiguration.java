@@ -72,6 +72,7 @@ public class ShiroAutoConfiguration {
         shiroFilterFactoryBean.setUnauthorizedUrl("/core/unauthorized");
         */
         if (shiroProperties.getTestMode()) {
+            shiroProperties.getFilterChainDefinitionMap().clear();
             shiroProperties.getFilterChainDefinitionMap().put("/**", "anon");
         }
         shiroFilterFactoryBean.setFilterChainDefinitionMap(shiroProperties.getFilterChainDefinitionMap());
