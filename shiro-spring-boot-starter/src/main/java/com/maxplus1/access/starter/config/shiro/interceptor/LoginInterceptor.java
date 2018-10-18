@@ -6,6 +6,7 @@ import com.maxplus1.access.starter.config.shiro.rbac.ShiroUser;
 import com.maxplus1.access.starter.config.shiro.rbac.service.IShiroUserService;
 import com.maxplus1.access.starter.config.shiro.utils.ShiroUtils;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.SimplePrincipalMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -43,9 +44,8 @@ public class LoginInterceptor implements HandlerInterceptor{
     public void afterCompletion(HttpServletRequest req, HttpServletResponse res, Object handler, Exception ex)
             throws Exception {
         if(SecurityUtils.getSubject().isAuthenticated()){
-
-            String userId = ShiroUtils.getUserId(SecurityUtils.getSubject().getPrincipals());
-            String userName = ShiroUtils.getUserName(SecurityUtils.getSubject().getPrincipals());
+            String userId = ShiroUtils.getUserId();
+            String userName = ShiroUtils.getUserName();
             AccUtils.setUserId(userId);
             ShiroUser user = userService.getUserByNameWithPassword(userName);
             // 密码脱敏

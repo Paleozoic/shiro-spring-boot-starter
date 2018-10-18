@@ -35,7 +35,7 @@ public class LoginRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-        String userId = ShiroUtils.getUserId(SecurityUtils.getSubject().getPrincipals());
+        String userId = ShiroUtils.getUserId();
         if( userId != null ){
             // 查询用户授权信息
             List<ShiroRole> userRoles=roleService.getUserRoleList(userId);
