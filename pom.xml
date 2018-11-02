@@ -30,9 +30,6 @@
 
 		<spring.boot.version>2.0.0.RELEASE</spring.boot.version>
 		<shiro.spring.boot.web.starter.version>1.4.0</shiro.spring.boot.web.starter.version>
-
-		<deploy2maven.url.snapshots>http://192.168.0.1:8081/repository/maven-snapshots/</deploy2maven.url.snapshots>
-		<deploy2maven.url.releases>http://192.168.0.1:8081/repository/maven-releases/</deploy2maven.url.releases>
 	</properties>
 
 	<dependencies>
@@ -108,15 +105,33 @@
 		</pluginManagement>
 	</build>
 
+	<scm>
+		<connection>scm:git:https://github.com/Paleozoic/shiro-spring-boot-starter.git</connection>
+		<developerConnection>scm:git:https://github.com/Paleozoic/shiro-spring-boot-starter.git</developerConnection>
+		<url>https://github.com/Paleozoic/shiro-spring-boot-starter</url>
+	</scm>
+	<licenses>
+		<license>
+			<name>The Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+	<developers>
+		<developer>
+			<name>Paleo</name>
+			<email>573793638@qq.com</email>
+			<url>http://maxplus1.com</url>
+		</developer>
+	</developers>
+
 	<distributionManagement>
 		<snapshotRepository>
-			<id>user-snapshot</id>
-			<url>${deploy2maven.url.snapshots}</url>
-			<uniqueVersion>true</uniqueVersion>
+			<id>oss</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
 		</snapshotRepository>
 		<repository>
-			<id>user-release</id>
-			<url>${deploy2maven.url.snapshots}</url>
+			<id>oss</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
 		</repository>
 	</distributionManagement>
 
