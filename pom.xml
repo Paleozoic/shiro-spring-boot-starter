@@ -30,6 +30,9 @@
 
 		<spring.boot.version>2.0.0.RELEASE</spring.boot.version>
 		<shiro.spring.boot.web.starter.version>1.4.0</shiro.spring.boot.web.starter.version>
+
+		<snapshotRepository.url>https://oss.sonatype.org/content/repositories/snapshots/</snapshotRepository.url>
+		<repository.url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</repository.url>
 	</properties>
 
 	<dependencies>
@@ -179,11 +182,11 @@
 	<distributionManagement>
 		<snapshotRepository>
 			<id>oss</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+			<url>${snapshotRepository.url}</url>
 		</snapshotRepository>
 		<repository>
 			<id>oss</id>
-			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+			<url>${repository.url}</url>
 		</repository>
 	</distributionManagement>
 
