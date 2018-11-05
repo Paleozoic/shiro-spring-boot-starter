@@ -1,0 +1,71 @@
+server:
+  servlet:
+    context-path: /demo/
+  port: 9000
+
+management:
+  port: 9001
+  address: 127.0.0.1
+
+spring:
+    autoconfigure:
+      exclude:
+        - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+    maxplus1:
+      druid: # 公共属性
+        driver-class-name: oracle.jdbc.OracleDriver
+        minIdle: 5
+        maxActive: 20
+        initialSize: 5
+        timeBetweenEvictionRunsMillis: 3000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: SELECT 1 FROM DUAL
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        data-sources: # 数据源个性化配置
+          runxa: # 注册的DataSource名字为：runxaDataSource
+            username: runxa
+            password: runxa
+            url: jdbc:oracle:thin:@10.254.253.31:1521:cmsdcdev
+      mybatis: # 公共属性
+          type-aliases-package: com.cms.xa.data.entity
+          configuration:
+              map-underscore-to-camel-case: true
+              default-fetch-size: 100
+              default-statement-timeout: 30
+          data-sources:
+            runxa: # 数据源+MyBatis个性化配置。默认第一个是主数据源，即@Primary
+              mapper-locations: classpath:mapper/runxa/*.xml # 可以输入数组
+              base-package: com.cms.xa.data.dao.runxa
+      pagehelper: # 分页参数，公共属性
+        pageSizeZero: true
+        rowBoundsWithCount: true
+        offsetAsPageNum: true
+        supportMethodsArguments: true
+        data-sources:
+          runxa:
+            helperDialect: oracle
+      shiro:
+        tokenKey: uuusid
+        loginUrl: /api/sys/login
+        filterChain: | # 注意所有perms的权限都需要通过@RequirePermissions来实现，建议不要配置perms（动态URL问题）。PS:yaml配置map的key含有/时，无法识别/。
+            /static/**=anon
+            /api/sys/ssoLogin=anon
+            /api/sys/login=anon
+            /api/sys/testRedis=anon
+            /api/**=authc
+            /**=authc
+            /api/sys/logout=logout
+        globalSessionTimeout: 180000000 # 3,600,000 milliseconds = 1 hour
+        sessionValidationInterval: 360000 # 会话有效校验扫描间隔
+        redisCacheEnabled: false # 开启分布式session 需要引入Redis的相关配置，spring-data-redis
+        testMode: false # 开启测试模式，测试模式下所有url的访问权限都是anon
+        mockUser: # 测试模式模拟的用户
+            userId: 'MOCK_USER0'
+            userName: 'mock_yonghu0'
+            deptId: 'MOCK_DEPT0'
+            deptName: '模拟部门0'
+            realName: '模拟用户0'
+            status: '正常'
+            password: 'MOCK_PASS0'

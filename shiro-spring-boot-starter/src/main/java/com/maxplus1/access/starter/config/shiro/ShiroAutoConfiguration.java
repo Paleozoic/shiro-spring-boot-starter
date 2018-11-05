@@ -2,7 +2,6 @@ package com.maxplus1.access.starter.config.shiro;
 
 import com.maxplus1.access.starter.config.shiro.filter.AuthcFilter;
 import com.maxplus1.access.starter.config.shiro.filter.PermsFilter;
-import com.maxplus1.access.starter.config.shiro.interceptor.shiro.ShiroAdvisor;
 import com.maxplus1.access.starter.config.shiro.realm.LoginRealm;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
@@ -22,7 +21,7 @@ import java.util.Map;
 /**
  * Created by qxloo on 2017/9/4.
  */
-@Configuration
+//@Configuration
 @EnableConfigurationProperties(ShiroProperties.class)
 public class ShiroAutoConfiguration {
 

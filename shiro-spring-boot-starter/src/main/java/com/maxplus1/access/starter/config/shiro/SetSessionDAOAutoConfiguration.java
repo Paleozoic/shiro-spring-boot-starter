@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 
 import javax.annotation.PostConstruct;
 
@@ -18,7 +19,7 @@ import javax.annotation.PostConstruct;
         value = "spring.maxplus1.shiro.redisCacheEnabled",
         havingValue = "true"
 )
-@Configuration
+//@Configuration
 public class SetSessionDAOAutoConfiguration {
 
     @Autowired

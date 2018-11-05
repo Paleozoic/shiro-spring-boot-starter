@@ -11,7 +11,6 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
-import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 
 @Slf4j
@@ -21,7 +20,7 @@ import org.springframework.data.redis.core.RedisTemplate;
         value = "spring.maxplus1.shiro.redisCacheEnabled",
         havingValue = "true"
 )
-@Configuration
+//@Configuration
 public class ShiroRedisAutoConfiguration {
 
     /**
