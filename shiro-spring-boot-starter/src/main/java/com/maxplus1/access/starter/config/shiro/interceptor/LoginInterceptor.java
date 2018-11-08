@@ -3,16 +3,13 @@ package com.maxplus1.access.starter.config.shiro.interceptor;
 
 import com.maxplus1.access.starter.config.shiro.rbac.AccUtils;
 import com.maxplus1.access.starter.config.shiro.rbac.ShiroUser;
-import com.maxplus1.access.starter.config.shiro.rbac.service.IShiroUserService;
+import com.maxplus1.access.starter.config.shiro.rbac.service.IShiroService;
 import com.maxplus1.access.starter.config.shiro.utils.ShiroUtils;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.subject.PrincipalCollection;
-import org.apache.shiro.subject.SimplePrincipalMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -25,12 +22,12 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginInterceptor implements HandlerInterceptor{
 
     @Autowired
-    private IShiroUserService userService;
+    private IShiroService shiroService;
 
 
     @Override
     public boolean preHandle(HttpServletRequest req, HttpServletResponse res, Object handler)
-            throws Exception {
+              {
         return true;
     }
 
@@ -42,12 +39,12 @@ public class LoginInterceptor implements HandlerInterceptor{
 
     @Override
     public void afterCompletion(HttpServletRequest req, HttpServletResponse res, Object handler, Exception ex)
-            throws Exception {
+              {
         if(SecurityUtils.getSubject().isAuthenticated()){
             String userId = ShiroUtils.getUserId();
             String userName = ShiroUtils.getUserName();
             AccUtils.setUserId(userId);
-            ShiroUser user = userService.getUserByNameWithPassword(userName);
+            ShiroUser user = shiroService.getUserByNameWithPassword(userName);
             // 密码脱敏
             user.setPassword("*******");
             AccUtils.setUser(user);

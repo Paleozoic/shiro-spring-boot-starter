@@ -1,8 +1,6 @@
 package com.maxplus1.access.starter.config.shiro.interceptor;
 
 
-import com.maxplus1.access.starter.config.shiro.rbac.service.IShiroMenuService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -21,8 +19,8 @@ import javax.servlet.http.HttpServletResponse;
 @Component
 public class AccessInterceptor implements HandlerInterceptor{
 
-    @Autowired
-    private IShiroMenuService menuService;
+//    @Autowired
+//    private IShiroService shiroService;
 
 
 
