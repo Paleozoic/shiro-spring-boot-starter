@@ -111,7 +111,7 @@ spring:
 - 此包只适配了前后端分离的项目，没有对静态资源进行处理。且Shiro的异常以json形式返回。    
 
 # deploy
-- 更改parent下的pom.xml的`deploy2maven.url.snapshots`和`deploy2maven.url.releases`为自己私库的url
+- 更改parent下的pom.xml的`snapshotRepository.url`和`repository.url`为自己私库的url
 - 配置maven的settings.xml的server标签。如下：
 ```xml
 <server>
