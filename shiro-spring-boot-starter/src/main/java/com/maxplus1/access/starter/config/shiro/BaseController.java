@@ -79,8 +79,8 @@ public abstract class BaseController {
      * 获取saas命名空间
      * @return
      */
-    public String saasNamespace(){
-        return user().getSaasNamespace();
+    public String namespace(){
+        return user().getNamespace();
     }
 
 

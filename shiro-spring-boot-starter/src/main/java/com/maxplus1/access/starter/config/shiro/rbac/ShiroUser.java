@@ -21,7 +21,7 @@ public class ShiroUser<T> implements Serializable {
     /**
      * saas命名空间
      */
-    private String saasNamespace;
+    private String namespace;
     /**
      * 扩展其他参数的模板
      */
