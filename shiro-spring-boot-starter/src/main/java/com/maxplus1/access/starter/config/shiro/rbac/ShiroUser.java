@@ -19,6 +19,10 @@ public class ShiroUser<T> implements Serializable {
     private String superAdmin;
     private List<String> appIdList;
     /**
+     * saas命名空间
+     */
+    private String saasNamespace;
+    /**
      * 扩展其他参数的模板
      */
     private T obj;

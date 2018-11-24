@@ -75,6 +75,14 @@ public abstract class BaseController {
         return shiroProperties.getApp().getId();
     }
 
+    /**
+     * 获取saas命名空间
+     * @return
+     */
+    public String saasNamespace(){
+        return user().getSaasNamespace();
+    }
+
 
     /**
      * 通过协议传参获取系统标识符
