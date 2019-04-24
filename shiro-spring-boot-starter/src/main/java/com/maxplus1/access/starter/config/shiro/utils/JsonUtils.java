@@ -24,6 +24,7 @@ public class JsonUtils {
             response.setContentType("application/json; charset=utf-8");
             response.getWriter().write(sb.toString());
             response.getWriter().flush();
+            response.getWriter().close();
         } catch (IOException e) {
             log.error("[ERROR===>>>]"+e.getMessage(),e);
         }
