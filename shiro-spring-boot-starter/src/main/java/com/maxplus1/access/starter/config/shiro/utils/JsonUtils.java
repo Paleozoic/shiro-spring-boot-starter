@@ -23,6 +23,7 @@ public class JsonUtils {
             response.setCharacterEncoding("UTF-8");
             response.setContentType("application/json; charset=utf-8");
             response.getWriter().write(sb.toString());
+            response.getWriter().flush();
         } catch (IOException e) {
             log.error("[ERROR===>>>]"+e.getMessage(),e);
         }
