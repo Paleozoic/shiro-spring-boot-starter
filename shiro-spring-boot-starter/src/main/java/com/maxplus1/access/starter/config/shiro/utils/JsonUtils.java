@@ -23,8 +23,15 @@ public class JsonUtils {
             response.setCharacterEncoding("UTF-8");
             response.setContentType("application/json; charset=utf-8");
             response.getWriter().write(sb.toString());
-            response.getWriter().flush();
-            response.getWriter().close();
+            /**
+             * 不需要flush  and close
+             * https://blog.csdn.net/VIP_WangSai/article/details/78357018
+             * Normally you should not close the stream. The servlet container will automatically close the stream after the servlet is finished running as part of the servlet request life-cycle.
+             * For instance, if you closed the stream it would not be available if you implemented a Filter.
+             * Having said all that, if you do close it nothing bad will happen as long as you don't try to use it again.
+             */
+//            response.getWriter().flush();
+//            response.getWriter().close();
         } catch (IOException e) {
             log.error("[ERROR===>>>]"+e.getMessage(),e);
         }
