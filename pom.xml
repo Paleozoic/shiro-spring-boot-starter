@@ -29,7 +29,7 @@
         <jconsolejar>${env.JAVA_HOME}/lib/jconsole.jar</jconsolejar>
 
         <spring.boot.version>2.1.9.RELEASE</spring.boot.version>
-        <shiro.spring.boot.web.starter.version>1.4.1</shiro.spring.boot.web.starter.version>
+        <shiro.spring.boot.web.starter.version>1.7.0</shiro.spring.boot.web.starter.version>
 
         <!--<snapshotRepository.url>http://10.254.251.24:8081/repository/maven-snapshots/</snapshotRepository.url>-->
         <!--<repository.url>http://10.254.251.24:8081/repository/maven-releases/</repository.url>-->
